@@ -1,0 +1,28 @@
+public class Main {
+    public static void main(String[] args) {
+        if (args.length < 2) {
+            System.out.println("❌ Недостаточно аргументов!");
+            return;
+        }
+
+        String rootPath = args[0];
+        boolean recursive = false;
+        String action = "";
+        String extraArg = null;
+
+        for (int i = 1; i < args.length; i++) {
+            if (args[i].equalsIgnoreCase("/sub")) {
+                recursive = true;
+            } else if (args[i].equalsIgnoreCase("/s")  args[i].equalsIgnoreCase("/n") 
+                       args[i].equalsIgnoreCase("/r") || args[i].equalsIgnoreCase("/c")) {
+                action = args[i];
+                if (i + 1 < args.length && !args[i + 1].startsWith("/")) {
+                    extraArg = args[i + 1];
+                }
+            }
+        }
+
+        ImageProcessor processor = new ImageProcessor(rootPath, recursive, action, extraArg);
+        processor.start();
+    }
+}
